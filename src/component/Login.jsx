@@ -1,43 +1,83 @@
-import React, { useContext, useEffect, useState } from "react";
-import axios from 'axios'
-
+import React, { useContext, useState } from "react";
+import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 export default function Login() {
-    const [userData, setUserDate] = useState({})
+    const [userData, setUserData] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { login } = useContext(AuthContext);
 
+    const sleep = (ms) => new Promise(res => setTimeout(res, ms));
+
     const authenticateUser = async () => {
-        const response = await axios.post("https://notes-qpy7.onrender.com/api/auth/authenticate", userData)
-        console.log(response);
-        login(response.data.token);
-    }
+        if (!userData.username || !userData.password) {
+            toast.error("Username and password are required");
+            return;
+        }
+
+        setIsSubmitting(true);
+        const toastId = toast.loading("Logging in...");
+
+        try {
+            for (let attempt = 0; attempt < 3; attempt++) {
+                try {
+                    const response = await axios.post(
+                        "https://notes-qpy7.onrender.com/api/auth/authenticate",
+                        userData
+                    );
+
+                    login(response.data.token);
+
+                    toast.update(toastId, {
+                        render: "Login successful 🎉",
+                        type: "success",
+                        isLoading: false,
+                        autoClose: 3000
+                    });
+
+                    return;
+
+                } catch (err) {
+                    if (attempt === 2) {
+                        toast.update(toastId, {
+                            render: "Login failed. Try again later.",
+                            type: "error",
+                            isLoading: false,
+                            autoClose: 4000
+                        });
+                    } else {
+                        await sleep(1500);
+                    }
+                }
+            }
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
-        <>
-            <div className="signup">
-                <input
-                    id="username"
-                    className=""
-                    type="text"
-                    onChange={(e) => setUserDate(prev => ({ ...prev, username: e.target.value }))}
-                    placeholder="username"
-                />
+        <div className="signup">
+            <input
+                type="text"
+                placeholder="username"
+                onChange={(e) =>
+                    setUserData(prev => ({ ...prev, username: e.target.value }))
+                }
+            />
 
-                <input
-                    id="password"
-                    className=""
-                    type="text"
-                    onChange={(e) => setUserDate(prev => ({ ...prev, password: e.target.value }))}
+            <input
+                type="password"
+                placeholder="password"
+                onChange={(e) =>
+                    setUserData(prev => ({ ...prev, password: e.target.value }))
+                }
+            />
 
-                    placeholder="password"
-                />
-                <button onClick={() => authenticateUser()}>
-                    authenticate User
-                </button>
-            </div>
-
-        </>
-    )
+            <button onClick={authenticateUser} disabled={isSubmitting}>
+                {isSubmitting ? "Logging in..." : "Login"}
+            </button>
+        </div>
+    );
 }

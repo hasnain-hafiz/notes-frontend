@@ -8,10 +8,17 @@ import AddNote from "../component/AddNote";
 export default function Notes() {
     const [notes, setNotes] = useState([]);
     const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(false);
+
 
     const fetchNotes = async () => {
-        const data = await apiRequest("/notes");
-        setNotes(data);
+        setLoading(true);
+        try {
+            const data = await apiRequest("/notes");
+            setNotes(data);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const searchNotes = async () => {
@@ -36,7 +43,7 @@ export default function Notes() {
             </div>
 
             <AddNote setNotes={setNotes} />
-            <AllNotes notes={notes} setNotes={setNotes} />
+            {loading ? <p>Loading notes...</p> :<AllNotes notes={notes} setNotes={setNotes} />}
         </div>
     );
 }

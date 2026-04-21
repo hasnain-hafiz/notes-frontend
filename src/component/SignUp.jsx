@@ -20,7 +20,7 @@ export default function SignUp() {
 
         setIsSubmitting(true);
 
-        const toastId = toast.loading("Connecting to server...");
+        const toastId = toast.loading("Signing Up...");
 
         try {
             for (let attempt = 0; attempt < 3; attempt++) {
