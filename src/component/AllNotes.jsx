@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useEffect } from "react";
 import { apiRequest } from "../utils/Api";
 import NoteCard from "./NoteCard";
-export default function AllNote({ notes, setNotes }) {
+export default function AllNotes({ notes, setNotes }) {
 
     const deleteNote = async (id) => {
         await apiRequest(`/notes/delete/${id}`, "DELETE");

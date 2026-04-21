@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { apiRequest } from "../utils/Api";
-import AllNote from "../component/AllNotes";
+import AllNotes from "../component/AllNotes";
 import AddNote from "../component/AddNote";
 
 
@@ -36,7 +36,7 @@ export default function Notes() {
             </div>
 
             <AddNote setNotes={setNotes} />
-            <AllNote notes={notes} setNotes={setNotes} />
+            <AllNotes notes={notes} setNotes={setNotes} />
         </div>
     );
 }
