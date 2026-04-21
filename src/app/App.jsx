@@ -3,7 +3,8 @@ import Authentication from '../pages/Authentication'
 import { AuthContext, AuthProvider } from '../context/AuthContext'
 import Notes from '../pages/Notes';
 import "./App.css"
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <ToastContainer />
       {token ? <Notes /> : <Authentication />}
     </div>
   )
