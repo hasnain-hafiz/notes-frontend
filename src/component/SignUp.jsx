@@ -59,8 +59,9 @@ export default function SignUp() {
     };
 
     return (
-        <div className="signup">
+        <div className="form-group">
             <input
+                
                 type="text"
                 placeholder="username"
                 onChange={(e) =>
@@ -84,7 +85,7 @@ export default function SignUp() {
                 }
             />
 
-            <button onClick={registerUser} disabled={isSubmitting}>
+            <button className="btn-primary" onClick={registerUser} disabled={isSubmitting}>
                 {isSubmitting ? "Please wait..." : "Create User"}
             </button>
 
