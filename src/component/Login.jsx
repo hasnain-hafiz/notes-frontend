@@ -58,7 +58,7 @@ export default function Login() {
     };
 
     return (
-        <div className="signup">
+        <div className="form-group">
             <input
                 type="text"
                 placeholder="username"
@@ -75,7 +75,7 @@ export default function Login() {
                 }
             />
 
-            <button onClick={authenticateUser} disabled={isSubmitting}>
+            <button className="btn-primary" onClick={authenticateUser} disabled={isSubmitting}>
                 {isSubmitting ? "Logging in..." : "Login"}
             </button>
         </div>
