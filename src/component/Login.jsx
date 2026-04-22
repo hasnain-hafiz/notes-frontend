@@ -34,7 +34,7 @@ export default function Login() {
                         render: "Login successful 🎉",
                         type: "success",
                         isLoading: false,
-                        autoClose: 3000
+                        autoClose: 2000
                     });
 
                     return;
@@ -45,7 +45,7 @@ export default function Login() {
                             render: "Login failed. Try again later.",
                             type: "error",
                             isLoading: false,
-                            autoClose: 4000
+                            autoClose: 2000
                         });
                     } else {
                         await sleep(1500);

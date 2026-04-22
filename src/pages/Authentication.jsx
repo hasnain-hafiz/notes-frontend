@@ -41,8 +41,7 @@ export default function Authentication() {
             {/* Left — Branding panel */}
             <div className="auth-left">
                 <div className="brand-mark">
-                    <div className="brand-icon">✦</div>
-                    <div className="brand-name">Folio</div>
+                    <div className="brand-name">Notes</div>
                 </div>
                 <h1 className="auth-headline">
                     Where your<br />thoughts find<br /><em>clarity.</em>

@@ -39,8 +39,7 @@ export default function Notes() {
             {/* ── Top bar ── */}
             <div className="top-bar">
                 <div className="brand-mark">
-                    <div className="brand-icon">✦</div>
-                    <div className="brand-name">Folio</div>
+                    <div className="brand-name">Notes</div>
                 </div>
 
                 <div className="search-wrap">
@@ -90,7 +89,6 @@ export default function Notes() {
                 </div>
             ) : notes.length === 0 ? (
                 <div className="empty-state">
-                    <div className="empty-state-icon">✦</div>
                     <p>No notes yet. Start writing something.</p>
                 </div>
             ) : (

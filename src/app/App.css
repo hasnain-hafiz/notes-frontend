@@ -1,7 +1,4 @@
-/* ============================================================
-   Folio — Notes App Stylesheet
-   Aesthetic: Dark luxury editorial · Gold accents · Serif display
-   ============================================================ */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
 
@@ -209,6 +206,15 @@ input, textarea, button, select {
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 8px;
+}
+
+.signup button{
+  color : black;;
+   font-family: var(--font-serif);
+}
+.signup input{
+  color: #0e0e12;
+   font-family: var(--font-serif);
 }
 
 .form-group input {
