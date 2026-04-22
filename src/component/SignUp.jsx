@@ -34,7 +34,7 @@ export default function SignUp() {
                         render: "Signup successful 🎉",
                         type: "success",
                         isLoading: false,
-                        autoClose: 3000
+                        autoClose: 2000
                     });
 
                     login(response.data.token);
@@ -46,7 +46,7 @@ export default function SignUp() {
                             render: "Server is slow or unreachable",
                             type: "error",
                             isLoading: false,
-                            autoClose: 4000
+                            autoClose: 2000
                         });
                     } else {
                         await sleep(2000);
